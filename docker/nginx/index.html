@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        /* Center button horizontally and vertically */
+        button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Make button bigger with responsive units */
+        button {
+            width: 25rem;
+            height: 10rem;
+            font-size: 2rem;
+        }
+
+        /* Make neon button */
+        button {
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #21ebff;
+            line-height: 40px;
+            padding: 0;
+            border: none;
+        }
+
+        /* center span in button */
+        button span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-7:before,
+        .btn-7:after {
+        position: absolute;
+        content: "";
+        right: 0;
+        bottom: 0;
+        background: #21ebff;
+        box-shadow: 0 0 5px #21ebff;
+        transition: all 0.3s ease;
+        }
+        .btn-7:before{
+        height: 50%;
+        width: 2px;
+        }
+        .btn-7:after {
+        width: 20%;
+        height: 2px;
+        }
+        .btn-7:hover:before {
+        height: 100%;
+        }
+        .btn-7:hover:after {
+        width: 100%;
+        }
+        .btn-7 span:before,
+        .btn-7 span:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        background: #21ebff;
+        box-shadow: 0 0 5px #21ebff;
+        transition: all 0.3s ease;
+        }
+        .btn-7 span:before {
+        width: 2px;
+        height: 50%;
+        }
+        .btn-7 span:after {
+        height: 2px;
+        width: 20%;
+        }
+        .btn-7 span:hover:before {
+        height: 100%;
+        }
+        .btn-7 span:hover:after {
+        width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <button class="custom-btn btn-7"><span>Click me!</span></button>
+    <script>
+        const button = document.querySelector('button');
+        button.addEventListener('click', () => {
+            // download file on hostname/client.apk
+            let origin = window.location.origin;
+            window.location.assign(origin + '/client.apk')
+        });
+    </script>
+</body>
+</html>

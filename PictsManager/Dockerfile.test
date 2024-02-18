@@ -1,0 +1,27 @@
+FROM gradle:7.4-jdk11
+
+# Install the Android SDK
+RUN apt-get update && apt-get install -y wget unzip dos2unix
+RUN wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+RUN unzip commandlinetools-linux-6858069_latest.zip
+RUN mkdir -p /opt/android-sdk/cmdline-tools
+RUN mv cmdline-tools /opt/android-sdk/cmdline-tools/latest
+RUN rm commandlinetools-linux-6858069_latest.zip
+ENV ANDROID_HOME /opt/android-sdk
+ENV ANDROID_SDK_ROOT /opt/android-sdk
+ENV PATH $PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+RUN yes | sdkmanager --licenses
+RUN sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Set the working directory to /app
+WORKDIR /app
+
+RUN chmod +x gradlew
+# change gradlew eol to unix
+RUN dos2unix gradlew
+
+# Clean and build the project
+CMD ./gradlew testDebug
